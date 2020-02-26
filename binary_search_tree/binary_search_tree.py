@@ -40,36 +40,43 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
+        # if no node, insert node
         if self.value is None:
             self.value = BinarySearchTree(value)
         else:
+            # if value is greater than node, look right, insert node if none, otherwise recurse
             if value >= self.value:
                 if self.right is None:
                     self.right = BinarySearchTree(value)
                 else:
-                    return self.insert(self.right)
+                    return self.right.insert(value)
+            # if value is less than node, look left, insert node if none, otherwise recurse
             else:
                 if self.left is None:
                     self.left = BinarySearchTree(value)
                 else:
-                    return self.insert(self.left)
+                    return self.left.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
 
     def contains(self, target):
-        if not self.right and not self.left:
+        if self.value is None:
             return False
         else:
-            if target == self.left or self.right:
+            if target == self.value:
                 return True
-            elif target >= self.value:
-                self.value = self.right
-            else:
-                self.value = self.left
-            return self.contains(target)
+            elif target >= self.value and self.right is None:
+                return False
+            elif target >= self.value and self.right is not None:
+                return self.right.contains(target)
+            elif target < self.value and self.left is None:
+                return False
+            elif target < self.value and self.left is not None:
+                return self.left.contains(target)
 
     # Return the maximum value found in the tree
+
     def get_max(self):
         if self.right:
             self.value = self.right
