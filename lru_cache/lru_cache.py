@@ -94,7 +94,7 @@ class LRUCache:
             self.storage.move_to_front(self.cache[key])
             return self.cache[key]
 
-        elif key not in self.cache.keys():
+        else:
             # increment size
             self.size += 1
             # move node to head of list
