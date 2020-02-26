@@ -79,7 +79,7 @@ class BinarySearchTree:
 
     def get_max(self):
         if self.right:
-            self.value = self.right
+            return self.right.get_max()
         else:
             return self.value
 
