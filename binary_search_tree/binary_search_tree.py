@@ -111,7 +111,7 @@ class BinarySearchTree:
         current_node = bft.dequeue()
 
         while current_node:
-            print(current_node)
+            print(current_node.value)
             # if right node, put in queue
             if current_node.right:
                 bft.enqueue(current_node.right)
@@ -128,9 +128,11 @@ class BinarySearchTree:
     # in an iterative depth first traversal
     def dft_print(self, node):
         dft = Stack()
+        # push initial node to stack
         dft.push(node)
 
-        while dft.len() > 0:
+        while dft.size > 0:
+            # store initial value in variable
             current = dft.pop()
             print(current.value)
             if current.right:
@@ -146,14 +148,23 @@ class BinarySearchTree:
     def pre_order_dft(self, node=None):
         print(self.value)
         if self.left:
-            self.left.in_order_print()
+            self.left.pre_order_dft()
         if self.right:
-            self.right.in_order_print()
+            self.right.pre_order_dft()
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node=None):
         if self.left:
-            self.left.in_order_print()
+            self.left.post_order_dft()
         if self.right:
-            self.right.in_order_print()
+            self.right.post_order_dft()
         print(self.value)
+
+
+bst = BinarySearchTree(1)
+print(bst.insert(8))
+print(bst.insert(7))
+print(bst.insert(6))
+print(bst.insert(3))
+print(bst.insert(4))
+print(bst.insert(2))
