@@ -108,24 +108,20 @@ class BinarySearchTree:
     def bft_print(self, node):
         bft = Queue()
         bft.enqueue(node)
-        current_node = bft.dequeue()
 
-        while current_node:
+        while bft.size > 0:
+            current_node = bft.dequeue()
             print(current_node.value)
-            # if right node, put in queue
+           # if right node, put in queue
             if current_node.right:
                 bft.enqueue(current_node.right)
             # if left node, put in queue
             if current_node.left:
                 bft.enqueue(current_node.left)
-            # if items in queue, dequeue (ie print) those values before moving down layers
-            if bft.size > 0:
-                current_node = bft.dequeue()
-            else:
-                break
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+
     def dft_print(self, node):
         dft = Stack()
         # push initial node to stack
